@@ -23,7 +23,6 @@ stages {
     steps{
       sh 'docker push ${IMAGE_TAG}'
       echo 'Image pushed successfully'
-      echo 'hiii'
     }
   }
 }

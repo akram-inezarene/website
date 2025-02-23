@@ -7,7 +7,7 @@ environment {
 stages {
   stage ('login to docker hub') {
     steps {
-      withcredentials ([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD']) {
+      withcredentials ([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]) {
         sh 'echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin'}
         echo 'Logged in to docker hub'
     }

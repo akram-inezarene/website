@@ -1,13 +1,13 @@
 pipeline{
   agent any
 environment {
-        IMAGE_NAME = 'akraminezarene/kawa-website'
+        IMAGE_NAME = 'akraminezarene/my-website'
         IMAGE_TAG = "${IMAGE_NAME}:${BUILD_NUMBER}"
 }
 stages {
   stage ('login to docker hub') {
     steps {
-      withcredentials ([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]) {
+      withCredentials ([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]) {
         sh 'echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin'}
         echo 'Logged in to docker hub'
     }

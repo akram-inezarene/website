@@ -21,7 +21,7 @@ stages {
   } 
   stage('push image'){
     steps{
-      sh 'docker push ${IMAGE_TAG}' .
+      sh 'docker push ${IMAGE_TAG}'
       echo 'Image pushed successfully'
     }
   }

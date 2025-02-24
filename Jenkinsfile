@@ -2,7 +2,7 @@ pipeline{
   agent any
 environment {
         IMAGE_NAME = 'akraminezarene/kawa-website'
-        IMAGE_TAG = "${IMAGE_NAME}:${env.GIT_COMMIT}"
+        IMAGE_TAG = "${IMAGE_NAME}:${BUILD_NUMBER}"
 }
 stages {
   stage ('login to docker hub') {
@@ -16,7 +16,7 @@ stages {
     steps {
       sh 'docker build -t ${IMAGE_TAG} .'
       echo 'Image built successfully'
-      sh 'docker images ls'
+      sh 'docker images '
     }
   } 
   stage('push image'){

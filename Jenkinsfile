@@ -3,6 +3,7 @@ pipeline{
 environment {
         IMAGE_NAME = 'akraminezarene/my-website'
         IMAGE_TAG = "${IMAGE_NAME}:${BUILD_NUMBER}"
+        KUBECONFIG = credentials('kubeconfig-creds-id')
 }
 stages {
 
@@ -24,6 +25,12 @@ stages {
     steps{
       sh 'docker push ${IMAGE_TAG}'
       echo 'Image pushed successfully'
+    }
+  }
+  stage('deploy to k3s'){
+    step{
+      sh 'kubectl apply -f deploy.yaml'
+      echo 'Deployment done successfully'
     }
   }
 }

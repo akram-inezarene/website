@@ -1,11 +1,11 @@
 pipeline{
-  agent any
+  agent { label 'VM2-node' } 
 environment {
         IMAGE_NAME = 'akraminezarene/my-website'
         IMAGE_TAG = "${IMAGE_NAME}:${BUILD_NUMBER}"
 }
 stages {
-  
+
   stage ('login to docker hub') {
     steps {
       withCredentials ([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]) {

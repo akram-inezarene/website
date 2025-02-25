@@ -22,13 +22,13 @@ stages {
     }
   } 
   stage('push image'){
-    steps{
+    steps {
       sh 'docker push ${IMAGE_TAG}'
       echo 'Image pushed successfully'
     }
   }
   stage('deploy to k3s'){
-    step{
+    steps {
       sh 'kubectl apply -f deploy.yaml'
       echo 'Deployment done successfully'
     }

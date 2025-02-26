@@ -15,10 +15,10 @@ spec:
         app: website
     spec:
       nodeSelector:
-        kubernetes.io/hostname: worker1
+        kubernetes.io/hostname: VM2
       containers:
       - name: website
-        image: akraminezarene/kawa-website:latest
+        image: akraminezarene/my-website:latest
         ports:
         - containerPort: 8080
 ---

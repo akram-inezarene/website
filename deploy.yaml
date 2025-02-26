@@ -14,9 +14,6 @@ spec:
       labels:
         app: website
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: VM2
-      containers:
       - name: website
         image: akraminezarene/my-website:123
         ports:

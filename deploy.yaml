@@ -14,8 +14,8 @@ spec:
       labels:
         app: website
     spec:
-      - name: website
-        image: akraminezarene/my-website:123
+      - image: akraminezarene/my-website:123 
+        name: website
         ports:
         - containerPort: 8080
 ---

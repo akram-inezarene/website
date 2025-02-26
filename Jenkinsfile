@@ -1,8 +1,8 @@
 pipeline{
   agent { label 'VM2-node' } 
 environment {
-        IMAGE_NAME = 'akraminezarene/my-website'
-        IMAGE_TAG = "${IMAGE_NAME}:${BUILD_NUMBER}"
+        IMAGE_NAME = 'akraminezarene/my-website:123'
+      //  IMAGE_TAG = "${IMAGE_NAME}:${BUILD_NUMBER}"
         KUBECONFIG = credentials('kubeconfig-creds-id')
 }
 stages {
@@ -16,14 +16,14 @@ stages {
   }
   stage ('Build image') {
     steps {
-      sh 'docker build -t ${IMAGE_TAG} .'
+      sh 'docker build -t akraminezarene/my-website:123 .'
       echo 'Image built successfully'
       sh 'docker images '
     }
   } 
   stage('push image'){
     steps{
-      sh 'docker push ${IMAGE_TAG}'
+      sh 'docker push akraminezarene/my-website:123'
       echo 'Image pushed successfully'
     }
   }

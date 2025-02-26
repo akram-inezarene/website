@@ -29,7 +29,6 @@ stages {
   }
   stage('deploy to k3s'){
     steps{
-    {
       sh 'kubectl apply -f deploy.yaml'
       echo 'Deployment done successfully'
     }

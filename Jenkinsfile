@@ -1,8 +1,8 @@
 pipeline{
   agent { label 'VM2-node' } 
 environment {
-        IMAGE_NAME = 'akraminezarene/my-website:123'
-      //  IMAGE_TAG = "${IMAGE_NAME}:${BUILD_NUMBER}"
+        IMAGE_NAME = 'akraminezarene/my-website'
+        IMAGE_TAG = "${IMAGE_NAME}:${BUILD_NUMBER}"
         KUBECONFIG = credentials('kubeconfig-creds-id')
 }
 stages {
@@ -16,19 +16,20 @@ stages {
   }
   stage ('Build image') {
     steps {
-      sh 'docker build -t akraminezarene/my-website:123 .'
+      sh 'docker build -t ${IMAGE_TAG} .'
       echo 'Image built successfully'
       sh 'docker images '
     }
   } 
   stage('push image'){
     steps{
-      sh 'docker push akraminezarene/my-website:123'
+      sh 'docker push ${IMAGE_TAG}'
       echo 'Image pushed successfully'
     }
   }
   stage('deploy to k3s'){
     steps{
+      sh "sed -i 's|image: ${IMAGE_NAME}:.*|image: ${IMAGE_TAG}|' deploy.yaml"
       sh 'kubectl apply -f deploy.yaml'
       echo 'Deployment done successfully'
     }

@@ -18,7 +18,7 @@ spec:
       - image: akraminezarene/my-website:123 
         name: website
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -30,5 +30,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 9090
+    targetPort: 80
   type: NodePort

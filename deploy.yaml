@@ -14,7 +14,7 @@ spec:
       labels:
         app: website
     spec:
-    containers:
+      containers:
       - image: akraminezarene/my-website:123 
         name: website
         ports:
